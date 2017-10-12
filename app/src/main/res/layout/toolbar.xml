@@ -15,7 +15,8 @@
     android:padding="0dp"
     app:contentInsetLeft="10dp"
     app:contentInsetRight="20dp"
-    app:contentInsetStart="10dp">
+    app:contentInsetStart="10dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
 
 </android.support.v7.widget.Toolbar>

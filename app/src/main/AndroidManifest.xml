@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -17,9 +17,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".HomeActivity"
-            android:label="@string/app_name">
-
-        </activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login">
@@ -28,8 +26,36 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
+        <activity
+            android:name=".GrowerActivity"
+            android:label="@string/title_activity_grower"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".BreederActivity"
+            android:label="@string/title_activity_breeder" />
+        <activity
+            android:name=".AgentActivity"
+            android:label="@string/title_activity_agent"
+            android:theme="@style/AppTheme" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+        <activity
+            android:name=".DirectMarketActivity"
+            android:label="@string/title_activity_direct_market"
+            android:parentActivityName=".GrowerActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.crysoft.me.iflora.GrowerActivity" />
+        </activity>
+        <activity
+            android:name=".ProductDetails"
+            android:label="@string/title_activity_product_details"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

@@ -14,7 +14,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.crysoft.me.iflora.R;
-import com.crysoft.me.iflora.adapters.DirectProduct;
+import com.crysoft.me.iflora.models.ProductsModel;
 
 import java.util.ArrayList;
 
@@ -23,7 +23,7 @@ import java.util.ArrayList;
  */
 
 public class MarketRecyclerViewAdapter extends RecyclerView.Adapter<MarketRecyclerViewAdapter.DataObjectHolder> {
-    private ArrayList<DirectProduct> product;
+    private ArrayList<ProductsModel> product;
     Activity main;
 
     private static MyClickListener myClickListener;
@@ -66,7 +66,7 @@ public class MarketRecyclerViewAdapter extends RecyclerView.Adapter<MarketRecycl
     public void setOnItemClickListener(MyClickListener myClickListener){
         this.myClickListener = myClickListener;
     }
-    public MarketRecyclerViewAdapter(Activity activity, Context context,ArrayList<DirectProduct> product){
+    public MarketRecyclerViewAdapter(Activity activity, Context context,ArrayList<ProductsModel> product){
         this.main = activity;
         this.context = context;
         this.product = product;
@@ -82,8 +82,8 @@ public class MarketRecyclerViewAdapter extends RecyclerView.Adapter<MarketRecycl
 
     @Override
     public void onBindViewHolder(DataObjectHolder holder, int position) {
-        holder.image.setImageResource(product.get(position).getMainImage());
-        holder.title.setText(product.get(position).getTitle());
+        //holder.image.setImageResource(product.get(position).getImageURL());
+        holder.title.setText(product.get(position).getProductTitle());
         holder.pricePerStem.setText(product.get(position).getPricePerStem());
         holder.rating.setText(product.get(position).getRating());
 

@@ -3,18 +3,77 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.crysoft.me.iflora.fragments.DiscoverFragment">
-    <GridView
-        android:id="@+id/directMarketGrid"
+    <ViewFlipper
+        android:id="@+id/viewFlipper"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="150dp"
+        android:layout_gravity="left|top"
+        android:flipInterval="5000"
+        android:inAnimation="@anim/slide_in_right"
+        android:outAnimation="@anim/slide_in_left">
+
+        <ImageView
+            android:id="@+id/ivFlipper1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/banner4" />
+
+        <ImageView
+            android:id="@+id/ivFlipper2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/banner5" />
+
+        <ImageView
+            android:id="@+id/ivFlipper3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/banner6" />
+
+    </ViewFlipper>
+    <GridView
+        android:id="@+id/mainCategoryGrid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/viewFlipper"
         android:layout_marginTop="3dp"
         android:columnWidth="90dp"
         android:gravity="center"
         android:horizontalSpacing="5dp"
-        android:numColumns="3"
-        android:padding="5dp"
+        android:numColumns="2"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         android:stretchMode="columnWidth"
         android:verticalSpacing="7dp"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_below="@id/mainCategoryGrid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:scrollbars="vertical" />
+    <LinearLayout
+        android:id="@+id/emptyView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="No Products Found"/>
+    </LinearLayout>
     <RelativeLayout
         android:id="@+id/loadingPanel"
         android:layout_width="match_parent"

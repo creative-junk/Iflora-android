@@ -8,13 +8,14 @@ import android.os.Parcelable;
  */
 
 public class ProductsModel implements Parcelable{
-    private String productTitle,imageURL,pricePerStem,color,season,stemLength,quality,growerName,growerId;
-    private int numberOfStems,stemsPerBox;
+    private String productId,productTitle,imageURL,pricePerStem,color,season,stemLength,quality,growerName,growerId;
+    private int numberOfStems,stemsPerBox,rating;
 
     public ProductsModel(){
 
     }
     protected ProductsModel(Parcel in) {
+        productId = in.readString();
         productTitle = in.readString();
         imageURL = in.readString();
         pricePerStem = in.readString();
@@ -26,6 +27,7 @@ public class ProductsModel implements Parcelable{
         growerId = in.readString();
         numberOfStems = in.readInt();
         stemsPerBox = in.readInt();
+        rating = in.readInt();
     }
 
     public static final Creator<ProductsModel> CREATOR = new Creator<ProductsModel>() {
@@ -133,8 +135,25 @@ public class ProductsModel implements Parcelable{
         this.stemsPerBox = stemsPerBox;
     }
 
+    public int getRating() {
+        return rating;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(productId);
         parcel.writeString(productTitle);
         parcel.writeString(imageURL);
         parcel.writeString(pricePerStem);
@@ -146,5 +165,6 @@ public class ProductsModel implements Parcelable{
         parcel.writeString(growerId);
         parcel.writeInt(numberOfStems);
         parcel.writeInt(stemsPerBox);
+        parcel.writeInt(rating);
     }
 }

@@ -33,6 +33,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.auth0.android.jwt.Claim;
+import com.auth0.android.jwt.JWT;
 import com.crysoft.me.iflora.helpers.PrefManager;
 
 import org.json.JSONArray;
@@ -260,8 +262,41 @@ public class LoginActivity extends AppCompatActivity {
             showProgress(false);
 
             if (errCode == 200){
-                Intent i = new Intent(LoginActivity.this, HomeActivity.class);
-                startActivity(i);
+                JWT parsedJWT = new JWT(token);
+                Claim roleMetadata = parsedJWT.getClaim("role");
+                String roleValue = roleMetadata.asString();
+                Log.i("Role",roleValue);
+                Claim nameMetadata = parsedJWT.getClaim("companyName");
+                String nameValue = nameMetadata.asString();
+
+                switch (roleValue){
+                    case "Buyer":
+                        Intent buyerIntent = new Intent(LoginActivity.this, HomeActivity.class);
+                        buyerIntent.putExtra("companyName", nameValue);
+                        startActivity(buyerIntent);
+                        break;
+                    case  "Grower":
+                        Intent growerIntent = new Intent(LoginActivity.this, GrowerActivity.class);
+                        growerIntent.putExtra("companyName", nameValue);
+                        startActivity(growerIntent);
+                        break;
+                    case "Breeder":
+                        Intent breederIntent = new Intent(LoginActivity.this, BreederActivity.class);
+                        breederIntent.putExtra("companyName", nameValue);
+                        startActivity(breederIntent);
+                        break;
+                    case "Agent":
+                        Intent agentIntent = new Intent(LoginActivity.this, AgentActivity.class);
+                        agentIntent.putExtra("companyName", nameValue);
+                        startActivity(agentIntent);
+                        break;
+                    default:
+                        Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+                        i.putExtra("companyName", nameValue);
+                        startActivity(i);
+
+                }
+
 
             }else{
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
